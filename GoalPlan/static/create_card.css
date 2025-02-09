@@ -1,0 +1,32 @@
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Отступ между кнопками */
+    margin-top: 20px;
+}
+
+.card-buttons .btn {
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}

@@ -1,0 +1,8 @@
+<div id="chat_box">
+    {% for message in messages %}
+        <div><strong>{{ message.user.name }}:</strong> {{ message.content }} <em>({{ message.created_at }})</em></div>
+    {% endfor %}
+</div>
+
+<textarea id="message_input"></textarea>
+<button id="send_message">Отправить сообщение</button>

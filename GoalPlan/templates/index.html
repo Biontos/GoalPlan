@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+<header>
+    <h1>GoalPlan</h1>
+</header>
+
+<div class="content">
+    {% if current_user.is_authenticated %}
+        <div class="user-profile">
+            <h2>Профиль пользователя</h2>
+            <p><strong>Имя:</strong> {{ current_user.name }}</p>
+            <p><strong>Email:</strong> {{ current_user.email }}</p>
+            <form action="{{ url_for('logout') }}" method="POST">
+                <button type="submit" class="button logout-button">Выйти</button>
+            </form>
+        </div>
+
+        <a href="{{ url_for('create_board') }}" class="button create-board-button">Создать новую доску</a>
+
+    {% else %}
+        <a href="{{ url_for('login') }}" class="button">Войти</a>
+        <a href="{{ url_for('register') }}" class="button">Зарегистрироваться</a>
+    {% endif %}
+
+    <h2>Доски</h2>
+    <div class="board-list">
+        {% for board in boards %}
+            <div class="board d-flex justify-content-between align-items-center">
+                <a href="{{ url_for('board', board_id=board.id) }}">{{ board.name }}</a>
+                <form action="{{ url_for('delete_board', board_id=board.id) }}" method="POST" onsubmit="return confirm('Вы уверены, что хотите удалить эту доску?');">
+                    <button type="submit" class="delete-button ms-auto">🗑</button>
+                </form>
+            </div>
+        {% else %}
+            <p>У вас нет досок. Создайте одну!</p>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
